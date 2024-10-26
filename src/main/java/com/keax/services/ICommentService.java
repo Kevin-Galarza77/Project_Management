@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.keax.model.Comment; 
 
+
 public interface ICommentService {
 	public void insertComment(Comment comment);
 

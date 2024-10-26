@@ -3,11 +3,15 @@ package com.keax.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.keax.model.Comment;
 import com.keax.repository.ICommentRepository;
 import com.keax.services.ICommentService;
 
+@Service
+@Component
 public class CommentServiceImp implements ICommentService {
 	
 	@Autowired

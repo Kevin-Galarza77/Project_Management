@@ -3,12 +3,15 @@ package com.keax.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.keax.model.User;
-import com.keax.repository.ITaaskRepository;
+import com.keax.model.User; 
 import com.keax.repository.IUserRepository;
 import com.keax.services.IUserService;
 
+@Service
+@Component
 public class UserServiceImp implements IUserService{
 
 	@Autowired
