@@ -1,8 +1,9 @@
 package com.keax.Project_Management.services;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.keax.Project_Management.model.Role;
+import com.keax.Project_Management.model.Role; 
 
 public interface IRoleService {
 	public void insertRole(Role Role);
@@ -16,4 +17,6 @@ public interface IRoleService {
 	public Role findByRoleName(String roleName);
 	
 	public List<Role> findByRoleStatus(boolean roleStatus);
+	
+    public Optional<Role> findById(int id);
 }

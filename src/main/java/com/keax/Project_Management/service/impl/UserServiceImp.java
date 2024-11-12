@@ -1,6 +1,7 @@
 package com.keax.Project_Management.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -99,6 +100,26 @@ public class UserServiceImp implements IUserService{
 	public List<User> findByUserFirstNameContaining(String firstName) {
 		try {
 			return userRepository.findByUserFirstNameContaining(firstName);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public List<User> findByUserStatus(boolean userStatus) {
+		try {
+			return userRepository.findByUserStatus(userStatus);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public Optional<User> findById(int id) {
+		try {
+			return userRepository.findById(id);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;

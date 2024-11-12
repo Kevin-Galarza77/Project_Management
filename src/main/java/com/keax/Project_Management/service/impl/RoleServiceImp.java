@@ -1,6 +1,7 @@
 package com.keax.Project_Management.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -68,6 +69,16 @@ public class RoleServiceImp implements IRoleService {
 	public List<Role> findByRoleStatus(boolean roleStatus) {
 		try {
 			return roleRepository.findByRoleStatus(roleStatus);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public Optional<Role> findById(int id) {
+		try {
+			return roleRepository.findById(id);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr"
+	data-theme="theme-default" data-assets-path="../assets/"
+	data-template="vertical-menu-template-free"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Gestión de Proyectos</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+	rel="stylesheet" />
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+	crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+		<h3 class="navbar-brand ps-3">Gestión de Proyectos</h3>
+	</nav>
+
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_nav">
+			<nav class="sb-sidenav accordion sb-sidenav-dark"
+				id="sidenavAccordion">
+				<div class="sb-sidenav-menu">
+					<div class="nav">
+						<div class="sb-sidenav-menu-heading">Páginas</div> 
+						<a class="nav-link" th:href="@{/roles}">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-people-group"></i>
+							</div> Roles
+						</a>
+						<a class="nav-link" th:href="@{/users}">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-users"></i>
+							</div> Usuarios
+						</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+
+					<h1 th:text="${user.userId != null && user.userId != 0} ? 'Modificar Usuario' : 'Nuevo Usuario'" 
+						class="my-4 pb-3 border border-bottom border-end-0 border-top-0 border-start-0"></h1>
+
+					<div class="card mb-4">
+						<div class="card-body">
+							<form th:action="@{${user.userId != null && user.userId != 0} ? '/updateUser' : '/newUser'}" th:object="${user}" method="post">
+
+								<input type="hidden" th:field="*{userId}">
+								<input type="hidden" th:field="*{userStatus}">
+
+								<div class="form-group">
+									<label for="userFirstName">Nombre</label> <input type="text"
+										class="form-control" id="userFirstName"
+										th:field="*{userFirstName}" placeholder="Nombre" required>
+								</div>
+
+								<div class="form-group">
+									<label for="userLastName">Apellido</label> <input type="text"
+										class="form-control" id="userLastName"
+										th:field="*{userLastName}" placeholder="Apellido" required>
+								</div>
+
+								<div class="form-group">
+									<label for="userEmail">Correo Electrónico</label> <input
+										type="email" class="form-control" id="userEmail"
+										th:field="*{userEmail}" placeholder="correo@example.com"
+										required>
+								</div>
+
+								<div class="form-group">
+									<label for="userPassword">Contraseña</label> <input
+										type="password" class="form-control" id="userPassword"
+										th:field="*{userPassword}" placeholder="Contraseña" th:required="${user.userId == null || user.userId == 0}">
+								</div>
+
+								<div class="form-group">
+									<label for="role">Rol</label> <select class="form-control"
+										id="role" th:field="*{role.roleId}" required>
+										<option th:each="role : ${roleList}" th:value="${role.roleId}"
+											th:text="${role.roleName}">Rol</option>
+									</select>
+
+								</div>
+
+								<div class="mt-4">
+									<a th:href="@{/users}" class="btn btn-secondary">Cancelar</a>
+									<button type="submit" class="btn btn-success" th:text="${user.userId != null && user.userId != 0} ? 'Actualizar' : 'Guardar'"></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer class="py-4 bg-light mt-auto">
+				<div class="container-fluid px-4">
+					<div
+						class="d-flex align-items-center justify-content-between small">
+						<div class="text-muted">Copyright &copy; Your Website 2023</div>
+						<div>
+							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
+								&amp; Conditions</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/js/datatables-simple-demo.js}"></script>
+</body>
+</html>

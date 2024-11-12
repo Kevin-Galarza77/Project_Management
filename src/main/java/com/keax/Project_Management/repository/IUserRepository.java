@@ -17,6 +17,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 
     public List<User> findByRole(Role role);
     
+    public List<User> findByUserStatus(boolean userStatus);
+    
     public List<User> findByUserFirstNameContaining(String firstName);
 	
 }

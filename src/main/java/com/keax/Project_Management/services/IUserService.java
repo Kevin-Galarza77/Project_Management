@@ -2,6 +2,7 @@ package com.keax.Project_Management.services;
  
 
 import java.util.List;
+import java.util.Optional;
 
 import com.keax.Project_Management.model.Role;
 import com.keax.Project_Management.model.User;
@@ -16,6 +17,8 @@ public interface IUserService {
 	public List<User> listUser();
 	
     public User findByUserEmail(String userEmail);
+    
+    public Optional<User> findById(int id);
 
     public List<User> findByUserFirstName(String firstName);
 
@@ -24,4 +27,6 @@ public interface IUserService {
     public List<User> findByRole(Role role);
     
     public List<User> findByUserFirstNameContaining(String firstName);
+    
+    public List<User> findByUserStatus(boolean userStatus);
 }
