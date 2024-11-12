@@ -12,6 +12,8 @@ import com.keax.Project_Management.model.User;
 public interface IProjectRepository extends JpaRepository<Project, Integer> {
 	
 	List<Project> findByStatus(Status status);
+	
+	List<Project> findByProjectStatus(boolean projectStatus);
 
     List<Project> findByManager(User manager);
 

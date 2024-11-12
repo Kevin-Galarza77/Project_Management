@@ -30,10 +30,10 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Páginas</div> 
-						<a class="nav-link" th:href="@{/statuss}">
+				<a class="nav-link" th:href="@{/roles}">
 							<div class="sb-nav-link-icon">
 								<i class="fa-solid fa-people-group"></i>
-							</div> statuss
+							</div> Roles
 						</a>
 						<a class="nav-link" th:href="@{/users}">
 							<div class="sb-nav-link-icon">
@@ -44,6 +44,11 @@
 							<div class="sb-nav-link-icon">
 								<i class="fa-solid fa-signal"></i>
 							</div> Estados
+						</a>
+						<a class="nav-link" th:href="@{/projects}">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-folder-open"></i>
+							</div> Proyectos
 						</a>
 					</div>
 				</div>
@@ -61,7 +66,7 @@
 							<form th:action="@{${status.statusId != null && status.statusId != 0} ? '/updateStatus' : '/newStatus'}" th:object="${status}" method="post">
 
 								<input type="hidden" th:field="*{statusId}">
-								<input type="hidden" th:field="*{statusStatus}">
+								<input type="hidden" th:field="*{Rolestatus}">
 
 								<div class="form-group">
 									<label for="statusName">Nombre</label> <input type="text"

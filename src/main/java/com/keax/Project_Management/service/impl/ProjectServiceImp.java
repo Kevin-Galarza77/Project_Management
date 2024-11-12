@@ -2,6 +2,7 @@ package com.keax.Project_Management.service.impl;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -102,6 +103,26 @@ public class ProjectServiceImp implements IProjectService {
 	public List<Project> findByStatusAndManager(Status status, User manager) {
 		try {
 			return projectRepository.findByStatusAndManager(status, manager);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public List<Project> findByProjectStatus(boolean projectStatus) {
+		try {
+			return projectRepository.findByProjectStatus(projectStatus);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public Optional<Project> findById(int id) {
+		try {
+			return projectRepository.findById(id);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;

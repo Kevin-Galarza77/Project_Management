@@ -2,6 +2,7 @@ package com.keax.Project_Management.services;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.keax.Project_Management.model.Project;
 import com.keax.Project_Management.model.Status;
@@ -15,6 +16,8 @@ public interface IProjectService {
 	public void deleteProject(int id);
 
 	public List<Project> listProject();
+
+	Optional<Project> findById(int id);
 	
 	List<Project> findByStatus(Status status);
 
@@ -25,4 +28,6 @@ public interface IProjectService {
     List<Project> findByProjectNameContaining(String projectName);
     
     List<Project> findByStatusAndManager(Status status, User manager);
+    
+    List<Project> findByProjectStatus(boolean projectStatus);
 }

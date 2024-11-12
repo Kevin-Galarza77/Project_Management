@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr"
+	data-theme="theme-default" data-assets-path="../assets/"
+	data-template="vertical-menu-template-free"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Gestión de Proyectos</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+	rel="stylesheet" />
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+	crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+		<h3 class="navbar-brand ps-3">Gestión de Proyectos</h3>
+	</nav>
+
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_nav">
+			<nav class="sb-sidenav accordion sb-sidenav-dark"
+				id="sidenavAccordion">
+				<div class="sb-sidenav-menu">
+					<div class="nav">
+						<div class="sb-sidenav-menu-heading">Páginas</div>
+						<a class="nav-link" th:href="@{/roles}">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-people-group"></i>
+							</div> Roles
+						</a> <a class="nav-link" th:href="@{/users}">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-users"></i>
+							</div> Usuarios
+						</a> <a class="nav-link" th:href="@{/statuses}">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-signal"></i>
+							</div> Estados
+						</a> <a class="nav-link" th:href="@{/projects}">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-folder-open"></i>
+							</div> Proyectos
+						</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+
+					<h1
+						th:text="${project.projectId != null && project.projectId != 0 ? 'Modificar Proyecto' : 'Nuevo Proyecto'}"
+						class="my-4 pb-3 border border-bottom border-end-0 border-top-0 border-start-0"></h1>
+
+					<div class="card mb-4">
+						<div class="card-body">
+							<form
+								th:action="@{${project.projectId != null && project.projectId != 0 ? '/updateProject' : '/newProject'}}"
+								th:object="${project}" method="post">
+								
+								<input type="hidden" th:field="*{projectId}">
+								<input type="hidden" th:field="*{projectStatus}">
+ 
+                                <div class="form-group mb-3">
+                                    <label for="projectName">Nombre del Proyecto</label>
+                                    <input type="text" class="form-control" id="projectName"
+                                           th:field="*{projectName}" placeholder="Nombre del Proyecto" required>
+                                </div>
+                                 
+                                <div class="form-group mb-3">
+                                    <label for="projectDescription">Descripción</label>
+                                    <textarea class="form-control" id="projectDescription" rows="3"
+                                              th:field="*{projectDescription}" placeholder="Descripción del Proyecto"></textarea>
+                                </div>
+                                 
+                                <div class="form-group mb-3">
+                                    <label for="projectStartDate">Fecha de Inicio</label>
+                                    <input type="date" class="form-control" id="projectStartDate" 
+                                           th:field="*{projectStartDate}" required>
+                                </div>
+                                 
+                                <div class="form-group mb-3">
+                                    <label for="projectEndDate">Fecha de Fin</label>
+                                    <input type="date" class="form-control" id="projectEndDate" 
+                                           th:field="*{projectEndDate}" required>
+                                </div>
+                                 
+                                <div class="form-group mb-3">
+                                    <label for="status">Estado</label>
+                                    <select class="form-control" id="status" th:field="*{status}">
+                                        <option value="" disabled>Seleccione un estado</option>
+                                        <option th:each="status : ${statusList}" 
+                                                th:value="${status.statusId}" 
+                                                th:text="${status.statusName}">
+                                        </option>
+                                    </select>
+                                </div>
+                                 
+                                <div class="form-group mb-3">
+                                    <label for="manager">Responsable del Proyecto</label>
+                                    <select class="form-control" id="manager" th:field="*{manager}">
+                                        <option value="" disabled>Seleccione un responsable</option>
+                                        <option th:each="user : ${userList}" 
+                                                th:value="${user.userId}" 
+                                                th:text="${user.userFirstName} + ' ' + ${user.userLastName}">
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="mt-4">
+                                    <a th:href="@{/projects}" class="btn btn-secondary">Cancelar</a>
+                                    <button type="submit" class="btn btn-success" 
+                                            th:text="${project.projectId != null && project.projectId != 0 ? 'Actualizar' : 'Guardar'}"></button>
+                                </div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer class="py-4 bg-light mt-auto">
+				<div class="container-fluid px-4">
+					<div
+						class="d-flex align-items-center justify-content-between small">
+						<div class="text-muted">Copyright &copy; Your Website 2023</div>
+						<div>
+							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
+								&amp; Conditions</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/js/datatables-simple-demo.js}"></script>
+</body>
+</html>
