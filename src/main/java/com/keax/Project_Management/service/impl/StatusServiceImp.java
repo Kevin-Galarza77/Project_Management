@@ -1,6 +1,7 @@
 package com.keax.Project_Management.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -69,6 +70,16 @@ public class StatusServiceImp implements IStatusService {
 	public List<Status> findByStatusStatus(boolean status) {
 		try {
 			return statusRepository.findByStatusStatus(status);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public Optional<Status> findById(int id) {
+		try {
+			return statusRepository.findById(id);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;

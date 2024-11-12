@@ -20,7 +20,7 @@
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<h3 class="navbar-brand ps-3">Gestión de Proyectos</h3>
+		<h3 class="navbar-brand ps-3">Gestión de Estados</h3>
 	</nav>
 
 	<div id="layoutSidenav">
@@ -35,10 +35,15 @@
 								<i class="fa-solid fa-people-group"></i>
 							</div> Roles
 						</a>
-						<a class="nav-link" th:href="@{/roles}">
+						<a class="nav-link" th:href="@{/users}">
 							<div class="sb-nav-link-icon">
-								<i class="fa-solid fa-roles"></i>
+								<i class="fa-solid fa-users"></i>
 							</div> Usuarios
+						</a>
+						<a class="nav-link" th:href="@{/statuses}">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-signal"></i>
+							</div> Estados
 						</a>
 					</div>
 				</div>

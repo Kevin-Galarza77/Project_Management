@@ -30,10 +30,10 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Páginas</div> 
-						<a class="nav-link" th:href="@{/roles}">
+						<a class="nav-link" th:href="@{/statuss}">
 							<div class="sb-nav-link-icon">
 								<i class="fa-solid fa-people-group"></i>
-							</div> Roles
+							</div> statuss
 						</a>
 						<a class="nav-link" th:href="@{/users}">
 							<div class="sb-nav-link-icon">
@@ -53,25 +53,25 @@
 			<main>
 				<div class="container-fluid px-4">
 
-					<h1 th:text="${role.roleId != null && role.roleId != 0} ? 'Modificar Rol' : 'Nuevo Rol'" 
+					<h1 th:text="${status.statusId != null && status.statusId != 0} ? 'Modificar Estado' : 'Nuevo Estado'" 
 						class="my-4 pb-3 border border-bottom border-end-0 border-top-0 border-start-0"></h1>
 
 					<div class="card mb-4">
 						<div class="card-body">
-							<form th:action="@{${role.roleId != null && role.roleId != 0} ? '/updateRole' : '/newRole'}" th:object="${role}" method="post">
+							<form th:action="@{${status.statusId != null && status.statusId != 0} ? '/updateStatus' : '/newStatus'}" th:object="${status}" method="post">
 
-								<input type="hidden" th:field="*{roleId}">
-								<input type="hidden" th:field="*{roleStatus}">
+								<input type="hidden" th:field="*{statusId}">
+								<input type="hidden" th:field="*{statusStatus}">
 
 								<div class="form-group">
-									<label for="roleName">Nombre</label> <input type="text"
-										class="form-control" id="roleName"
-										th:field="*{roleName}" placeholder="Nombre" required>
+									<label for="statusName">Nombre</label> <input type="text"
+										class="form-control" id="statusName"
+										th:field="*{statusName}" placeholder="Nombre" required>
 								</div>
 
 								<div class="mt-4">
-									<a th:href="@{/roles}" class="btn btn-secondary">Cancelar</a>
-									<button type="submit" class="btn btn-success" th:text="${role.roleId != null && role.roleId != 0} ? 'Actualizar' : 'Guardar'"></button>
+									<a th:href="@{/statuses}" class="btn btn-secondary">Cancelar</a>
+									<button type="submit" class="btn btn-success" th:text="${status.statusId != null && status.statusId != 0} ? 'Actualizar' : 'Guardar'"></button>
 								</div>
 							</form>
 						</div>
